@@ -1,3 +1,4 @@
+/*Created with love by Michael Martins*/
 var disp1 = document.querySelector('#disp1'),
 disp2 = document.querySelector('#disp2'),
 displayBtn = document.querySelector('#displayBtn'),
