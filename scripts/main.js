@@ -1,32 +1,32 @@
 /*Created with love by Michael Martins*/
 var disp1 = document.querySelector('#disp1'),
-disp2 = document.querySelector('#disp2'),
-displayBtn = document.querySelector('#displayBtn'),
-theme = document.querySelector('#theme'),
-start = document.querySelector('#start'),
-reset = document.querySelector('#reset'),
-_theme = document.querySelector('#t'),
-button = document.querySelectorAll('button');
+  disp2 = document.querySelector('#disp2'),
+  displayBtn = document.querySelector('#displayBtn'),
+  theme = document.querySelector('#theme'),
+  start = document.querySelector('#start'),
+  reset = document.querySelector('#reset'),
+  _theme = document.querySelector('#t'),
+  button = document.querySelectorAll('button');
 let dark = true,
   inProgress = false;
 window.onload = () => {
   timeReset();
   time();
   theme.innerHTML = '🌙';
-  displayBtn.style.fontSize='3.5rem';
+  displayBtn.style.fontSize = '3.5rem';
 }
 
 start.addEventListener('click', inProgressCheck);
 
 displayBtn.addEventListener('click', inProgressCheck);
 
-reset.addEventListener('click',()=>{
+reset.addEventListener('click', () => {
   timeReset();
   time();
-  inProgress=true;
+  inProgress = true;
   inProgressCheck();
 })
-function inProgressCheck(){
+const inProgressCheck = () => {
   switch (inProgress) {
     case false:
       play();
@@ -34,29 +34,29 @@ function inProgressCheck(){
     default:
       pause();
       break;
-  } 
+  }
 }
-function play(){
-  st = setInterval(time,10);
+const play = () => {
+  st = setInterval(time, 10);
   inProgress = true;
-  button[2].innerHTML='PAUSE';
+  button[2].innerHTML = 'PAUSE';
 }
-function pause(){
+const pause = () => {
   clearInterval(st);
   inProgress = false;
-  button[2].innerHTML='START';
+  button[2].innerHTML = 'START';
 }
-function timeReset(){
-var dateArr = [0, 0, 0, 0, 0, 0, 0];
-d = new Date(...dateArr);
-h = d.getHours();
-m = d.getMinutes();
-s = d.getSeconds();
-ms = d.getMilliseconds();
-cs = ms * 10;
-disp2.style.fontSize='3.5rem';
+const timeReset = () => {
+  var dateArr = [0, 0, 0, 0, 0, 0, 0];
+  d = new Date(...dateArr);
+  h = d.getHours();
+  m = d.getMinutes();
+  s = d.getSeconds();
+  ms = d.getMilliseconds();
+  cs = ms * 10;
+  disp2.style.fontSize = '3.5rem';
 }
-function time() {
+const time = () => {
   S = JSON.stringify(s),
     M = JSON.stringify(m),
     H = JSON.stringify(h), cS = JSON.stringify(cs);
@@ -75,7 +75,7 @@ function time() {
     disp2.innerHTML = `${cs}`;
   }
   else {
-    disp1.innerHTML='';
+    disp1.innerHTML = '';
     disp2.innerHTML = `${cs}`;
   }
   //(cs+=1) != (cs++);
@@ -83,7 +83,7 @@ function time() {
   clockEng();
 }
 
-function clockEng() {
+const clockEng = () => {
   if (cs == 100) {
     s++;
     cs = 0;
@@ -99,7 +99,7 @@ function clockEng() {
   }
 }
 
-function modifyDisplay() {
+const modifyDisplay = () => {
   if (cS[1] == null) {
     cs = `0${cs}`;
   }
@@ -123,7 +123,7 @@ theme.addEventListener('click', () => {
       darkTheme();
   }
 })
-function darkTheme(){
+const darkTheme = () => {
   document.body.style.background = 'black';
   //document.body.style.color = 'white';
   theme.innerHTML = '🌙';
@@ -131,7 +131,7 @@ function darkTheme(){
   butStyle('white');
   dark = true;
 }
-function lightTheme(){
+const lightTheme = () => {
   document.body.style.background = 'white';
   document.body.style.color = 'black';
   theme.innerHTML = '🌞';
@@ -139,7 +139,7 @@ function lightTheme(){
   butStyle('black');
   dark = false;
 }
-function butStyle(val) {
+const butStyle = (val) => {
   for (i = 0; i < 4; i++) {
     button[i].style.color = val;
   }
